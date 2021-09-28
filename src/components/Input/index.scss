@@ -1,0 +1,18 @@
+@import "../../assets/style/color.scss";
+
+.input {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid $commonGray;
+  padding: 0 1rem;
+
+  &-content {
+    flex: 1;
+    border: none;
+    outline: none;
+
+    fieldset {
+      border: none;
+    }
+  }
+}
