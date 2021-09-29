@@ -3,8 +3,9 @@
 .input {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border: 2px solid $commonGray;
-  padding: 0 1rem;
+  padding: 0 0.5rem;
 
   &-content {
     flex: 1;
@@ -14,5 +15,9 @@
     fieldset {
       border: none;
     }
+  }
+
+  svg {
+    transform: translateY(2px);
   }
 }
