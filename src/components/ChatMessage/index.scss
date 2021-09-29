@@ -1,0 +1,41 @@
+@import "../../assets/style/color.scss";
+
+.chat_message {
+  display: flex;
+  padding: 0.3rem;
+
+  &-detail {
+    padding: 0 0.2rem;
+
+    &-text {
+      font-size: 0.8rem;
+      border: 1px solid $lightGray;
+      border-radius: 5px;
+      padding: 0.2rem;
+      word-break: break-all;
+      white-space: break-spaces;
+    }
+
+    &-info {
+      font-size: 0.8rem;
+
+      &-name {
+        font-weight: bold;
+      }
+    }
+  }
+
+  &.mine {
+    flex-direction: row-reverse;
+
+    .chat_message-detail-info {
+      text-align: right;
+    }
+
+    .chat_message-detail-text {
+      color: #fff;
+      background-color: $commonBlue;
+      border-color: $commonBlue;
+    }
+  }
+}
