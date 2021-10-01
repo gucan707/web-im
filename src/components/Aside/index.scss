@@ -1,0 +1,51 @@
+@import "../../assets/style/color.scss";
+
+.aside {
+  position: relative;
+  width: 17rem;
+  height: 100vh;
+  overflow: scroll;
+  background-color: $asideBgc;
+  padding-top: 40px;
+  box-sizing: border-box;
+
+  &-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0.2rem 0.5rem;
+    border-bottom: 1px solid $commonGray;
+
+    &-opts {
+      display: flex;
+
+      &-search {
+        position: relative;
+
+        &-input {
+          position: absolute;
+          width: 1.5rem;
+          height: 1.5rem;
+          z-index: -1;
+          right: 0;
+          border-radius: 999px;
+          background-color: transparent;
+          transition: width 0.5s;
+
+          &.focus {
+            width: 7rem;
+            padding: 0 1.5rem 0 0.5rem;
+            font-size: 0.8rem;
+            border: 1px solid $commonGray;
+            background-color: #fff;
+          }
+        }
+      }
+    }
+  }
+}

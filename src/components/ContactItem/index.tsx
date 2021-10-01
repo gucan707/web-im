@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Badge, Avatar } from "@material-ui/core";
+import ListOutlinedIcon from "@material-ui/icons/ListOutlined";
 
 import AvatarContainer from "../AvatarContainer";
 
@@ -13,7 +13,10 @@ export default function ContactItem() {
       <AvatarContainer imgSrc={photo} badgeInvisible={false} />
       <div className="contact_item-info">
         <div className="contact_item-info-name">前端组</div>
-        <div className="contact_item-info-unread">12</div>
+        <div className="contact_item-info-right">
+          <div className="contact_item-info-unread">12</div>
+          <ListOutlinedIcon className="contact_item-info-opts" />
+        </div>
       </div>
     </div>
   );

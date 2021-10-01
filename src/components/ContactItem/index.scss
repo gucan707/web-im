@@ -1,15 +1,38 @@
+@import "../../assets/style/color.scss";
+
 .contact_item {
   display: flex;
   align-items: center;
-  padding: 0 0.2rem;
+  padding: 0.2rem;
+  vertical-align: middle;
+
+  &:hover {
+    background-color: $contactItemHover;
+    cursor: pointer;
+
+    .contact_item-info-right {
+      transform: translateX(0);
+    }
+  }
 
   &-info {
+    flex: 1;
     display: flex;
-    padding: 0 1rem;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 1rem;
+    overflow: hidden;
 
     &-name {
       line-height: 1;
-      transform: translateY(1px);
+      transform: translateY(-1px);
+    }
+
+    &-right {
+      display: flex;
+      align-items: center;
+      transform: translateX(1.5rem);
+      transition: transform 0.5s;
     }
 
     &-unread {
@@ -21,11 +44,16 @@
       color: white;
       font-weight: 500;
       font-size: 0.75rem;
-      min-width: 20px;
+      min-width: 1rem;
       padding: 0px 6px;
       margin-left: 0.5rem;
-      height: 20px;
+      height: 1rem;
       border-radius: 10px;
+    }
+
+    &-opts {
+      width: 1.5rem;
+      height: 1.5rem;
     }
   }
 }
