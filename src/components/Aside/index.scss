@@ -34,15 +34,37 @@
           z-index: -1;
           right: 0;
           border-radius: 999px;
-          background-color: transparent;
-          transition: width 0.5s;
+          background-color: #fff;
+          opacity: 0;
+          font-size: 0.8rem;
+          border: 1px solid $commonGray;
+
+          &.unfocus {
+            animation: input-out 0.3s linear;
+            @keyframes input-out {
+              0% {
+                opacity: 1;
+                width: 7rem;
+                padding: 0 1.5rem 0 0.5rem;
+              }
+              100% {
+                opacity: 1;
+              }
+            }
+          }
 
           &.focus {
-            width: 7rem;
-            padding: 0 1.5rem 0 0.5rem;
-            font-size: 0.8rem;
-            border: 1px solid $commonGray;
-            background-color: #fff;
+            animation: input-in 0.3s linear forwards;
+            @keyframes input-in {
+              0% {
+                opacity: 1;
+              }
+              100% {
+                opacity: 1;
+                width: 7rem;
+                padding: 0 1.5rem 0 0.5rem;
+              }
+            }
           }
         }
       }

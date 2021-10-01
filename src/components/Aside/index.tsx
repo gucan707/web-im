@@ -10,7 +10,7 @@ import photo from "../../assets/img/photo.jpeg";
 import "./index.scss";
 
 export default function Aside() {
-  const [isFocus, setIsFocus] = useState(false);
+  const [isFocus, setIsFocus] = useState<boolean | null>(null);
   const inputEl = useRef<HTMLInputElement>(null);
 
   return (
@@ -22,19 +22,24 @@ export default function Aside() {
             <input
               type="text"
               className={
-                "aside-menu-opts-search-input" + (isFocus ? " focus" : "")
+                "aside-menu-opts-search-input" +
+                (isFocus === null ? "" : isFocus ? " focus" : " unfocus")
               }
               ref={inputEl}
-              onBlur={() => setIsFocus(false)}
+              onClick={(e) => e.stopPropagation()}
             />
-            {isFocus || (
-              <SearchOutlinedIcon
-                onClick={(e) => {
-                  if (inputEl.current) inputEl.current.focus();
-                  setIsFocus(true);
-                }}
-              />
-            )}
+            <SearchOutlinedIcon
+              onClick={(e) => {
+                e.stopPropagation();
+                if (isFocus) return;
+
+                if (inputEl.current) inputEl.current.focus();
+                setIsFocus(true);
+                document.addEventListener("click", () => setIsFocus(false), {
+                  once: true,
+                });
+              }}
+            />
           </div>
           <AddIcon />
         </div>
