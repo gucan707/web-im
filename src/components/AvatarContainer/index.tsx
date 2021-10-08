@@ -4,8 +4,8 @@ import { Badge, Avatar } from "@material-ui/core";
 import "./index.scss";
 
 export interface AvatarContainerProps {
-  imgSrc: string;
-  badgeInvisible: boolean;
+  imgSrc: string; // 照片路径
+  badgeInvisible: boolean; // 是否显示徽章
   color?:
     | "default"
     | "primary"
@@ -15,10 +15,12 @@ export interface AvatarContainerProps {
     | "success"
     | "warning";
   anchorOrigin?: {
+    // 徽章位置
     vertical: "top" | "bottom";
     horizontal: "left" | "right";
   };
   avartarSx?: {
+    // 头像大小
     width: number;
     height: number;
   };
