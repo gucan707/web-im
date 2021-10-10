@@ -1,53 +1,45 @@
 import { useState, useRef } from "react";
-import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
-import AddIcon from "@material-ui/icons/Add";
 
 import AvatarContainer from "../AvatarContainer";
 import ContactItem from "../ContactItem";
 
 import photo from "../../assets/img/photo.jpeg";
+import messageIcon from "../../assets/img/message.png";
+import friendsIcon from "../../assets/img/friends.png";
+import momentsIcon from "../../assets/img/moments.png";
+import searchIcon from "../../assets/img/search.png";
+import addIcon from "../../assets/img/add.png";
 
 import "./index.scss";
 
 export default function Aside() {
-  const [isFocus, setIsFocus] = useState<boolean | null>(null);
-  const inputEl = useRef<HTMLInputElement>(null);
-
   return (
     <aside className="aside">
-      <div className="aside-menu">
-        <AvatarContainer imgSrc={photo} badgeInvisible={true} />
-        <div className="aside-menu-opts">
-          <div className="aside-menu-opts-search">
-            <input
-              type="text"
-              className={
-                "aside-menu-opts-search-input" +
-                (isFocus === null ? "" : isFocus ? " focus" : " unfocus")
-              }
-              ref={inputEl}
-              onClick={(e) => e.stopPropagation()}
-            />
-            <SearchOutlinedIcon
-              onClick={(e) => {
-                e.stopPropagation();
-                if (isFocus) return;
-
-                if (inputEl.current) inputEl.current.focus();
-                setIsFocus(true);
-                document.addEventListener("click", () => setIsFocus(false), {
-                  once: true,
-                });
-              }}
+      <div className="aside-opts">
+        <div className="aside-opts-avatar">
+          <AvatarContainer imgSrc={photo} badgeInvisible={false} />
+        </div>
+        <img src={messageIcon} alt="message" className="aside-opts-btn" />
+        <img src={friendsIcon} alt="friends" className="aside-opts-btn" />
+        <img src={momentsIcon} alt="moments" className="aside-opts-btn" />
+      </div>
+      <div className="aside-content">
+        <div className="aside-content-opts">
+          <div className="aside-content-opts-input">
+            <input type="text" placeholder="search" />
+            <img
+              src={searchIcon}
+              alt="search"
+              className="aside-content-opts-input-icon"
             />
           </div>
-          <AddIcon />
+          <img src={addIcon} alt="add" className="aside-content-opts-add" />
         </div>
-      </div>
-      <div>
-        <ContactItem />
-        <ContactItem />
-        <ContactItem />
+        <div>
+          <ContactItem />
+          <ContactItem />
+          <ContactItem />
+        </div>
       </div>
     </aside>
   );
