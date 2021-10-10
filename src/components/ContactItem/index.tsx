@@ -10,7 +10,11 @@ import "./index.scss";
 export default function ContactItem() {
   return (
     <div className="contact_item">
-      <AvatarContainer imgSrc={photo} badgeInvisible={false} />
+      <AvatarContainer
+        imgSrc={photo}
+        badgeInvisible={false}
+        avartarSx={{ width: 29, height: 29 }}
+      />
       <div className="contact_item-info">
         <div className="contact_item-info-name">前端组</div>
         <div className="contact_item-info-right">

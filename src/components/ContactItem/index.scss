@@ -3,7 +3,7 @@
 .contact_item {
   display: flex;
   align-items: center;
-  padding: 0.2rem;
+  padding: 0.3rem 0.2rem;
   vertical-align: middle;
 
   &:hover {
@@ -26,6 +26,7 @@
     &-name {
       line-height: 1;
       transform: translateY(-1px);
+      font-size: 0.9rem;
     }
 
     &-right {
