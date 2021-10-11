@@ -4,7 +4,9 @@ import "./index.scss";
 
 export interface InputProps {
   value: string;
-  setValue: (value: string) => void;
+  onChange: (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => void;
   front?: JSX.Element;
   end?: JSX.Element;
   multiline?: boolean;
@@ -14,7 +16,7 @@ export interface InputProps {
 export default function Input(props: InputProps) {
   const {
     value,
-    setValue,
+    onChange,
     front,
     end,
     multiline = true,
@@ -29,7 +31,7 @@ export default function Input(props: InputProps) {
         type={type}
         maxRows={4}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={onChange}
       />
       <div className="input-end">{end ? end : false}</div>
     </div>

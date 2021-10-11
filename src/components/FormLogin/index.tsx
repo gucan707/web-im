@@ -17,8 +17,8 @@ export default function FormLogin() {
         <div className="form_login-input-key">用户名</div>
         <Input
           value={form.username}
-          setValue={(username) =>
-            setForm({ username, password: form.password })
+          onChange={(e) =>
+            setForm({ username: e.target.value, password: form.password })
           }
           multiline={false}
         />
@@ -27,8 +27,8 @@ export default function FormLogin() {
         <div className="form_login-input-key">密码</div>
         <Input
           value={form.password}
-          setValue={(password) =>
-            setForm({ password, username: form.username })
+          onChange={(e) =>
+            setForm({ password: e.target.value, username: form.username })
           }
           multiline={false}
           type="password"

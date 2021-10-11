@@ -4,7 +4,7 @@ import Aside from "../../components/Aside";
 import Input from "../../components/Input";
 import ChatMessage from "../../components/ChatMessage";
 
-import { socket } from "../../network/socket";
+// import { socket } from "../../network/socket";
 
 import photo from "../../assets/img/photo.jpeg";
 
@@ -12,10 +12,6 @@ import "./index.scss";
 
 export default function Chat() {
   const [value, setValue] = useState("");
-
-  useEffect(() => {
-    console.log({ socket });
-  }, []);
 
   return (
     <div className="chat_page">
@@ -39,7 +35,7 @@ export default function Chat() {
           />
         </div>
         <div className="chat_page-content-input">
-          <Input value={value} setValue={setValue} />
+          <Input value={value} onChange={(e) => setValue(e.target.value)} />
         </div>
       </div>
     </div>
