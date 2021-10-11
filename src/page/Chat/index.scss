@@ -1,7 +1,21 @@
-.chat-page {
+.chat_page {
   display: flex;
 
-  &_content {
+  &-content {
     flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    overflow: hidden;
+
+    &-message {
+      flex: 1;
+      overflow-y: scroll;
+    }
+
+    &-input {
+      padding: 0.3rem;
+    }
   }
 }
