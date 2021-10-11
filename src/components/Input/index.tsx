@@ -7,16 +7,26 @@ export interface InputProps {
   setValue: (value: string) => void;
   front?: JSX.Element;
   end?: JSX.Element;
+  multiline?: boolean;
+  type?: string;
 }
 
 export default function Input(props: InputProps) {
-  const { value, setValue, front, end } = props;
+  const {
+    value,
+    setValue,
+    front,
+    end,
+    multiline = true,
+    type = "text",
+  } = props;
   return (
     <div className="input">
       <div className="input-front">{front ? front : false}</div>
       <TextField
         className="input-content"
-        multiline
+        multiline={multiline}
+        type={type}
         maxRows={4}
         value={value}
         onChange={(e) => setValue(e.target.value)}
