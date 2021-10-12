@@ -7,6 +7,7 @@ import photo from "../../assets/img/photo.jpeg";
 import messageIcon from "../../assets/img/message.png";
 import friendsIcon from "../../assets/img/friends.png";
 import momentsIcon from "../../assets/img/moments.png";
+import logoutIcon from "../../assets/img/logout.png";
 import searchIcon from "../../assets/img/search.png";
 import addIcon from "../../assets/img/add.png";
 
@@ -22,6 +23,7 @@ export default function Aside() {
         <img src={messageIcon} alt="message" className="aside-opts-btn" />
         <img src={friendsIcon} alt="friends" className="aside-opts-btn" />
         <img src={momentsIcon} alt="moments" className="aside-opts-btn" />
+        <img src={logoutIcon} alt="logout" className="aside-opts-btn" />
       </div>
       <div className="aside-content">
         <div className="aside-content-opts">
