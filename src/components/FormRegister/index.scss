@@ -1,0 +1,52 @@
+@import "../../assets/style/color.scss";
+
+.form_register {
+  position: relative;
+  margin-top: 1rem;
+  transform: translate(-1rem, 0);
+
+  &-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 0 1rem 0;
+    position: relative;
+
+    &::after {
+      position: absolute;
+      right: -1rem;
+      transform: translateX(100%);
+      content: attr(data-warning);
+      color: $grayTips;
+      font-size: 0.6rem;
+      max-width: 14rem;
+    }
+
+    &.error::after {
+      color: $errorTips;
+    }
+
+    &-key {
+      padding: 0 0.3rem;
+    }
+
+    .input {
+      height: 2.5rem;
+
+      .MuiOutlinedInput-input {
+        padding: 0.1rem 0.5rem;
+      }
+    }
+  }
+
+  &-btn {
+    position: absolute;
+    left: 50%;
+    transform: translateX(calc(-50% + 1rem));
+  }
+
+  .MuiButton-outlinedPrimary.MuiButton-outlinedPrimary {
+    color: $myChatMessage;
+    border: 1px solid $myChatMessage;
+  }
+}
