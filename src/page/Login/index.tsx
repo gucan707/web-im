@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Tabs, Tab } from "@material-ui/core";
 
-import "./index.scss";
 import FormLogin from "../../components/FormLogin";
 import FormRegister from "../../components/FormRegister";
+
+import GChat from "../../assets/img/GChat.png";
+
+import "./index.scss";
 
 export default function Login() {
   // 当前tab索引
@@ -14,7 +17,14 @@ export default function Login() {
   };
   return (
     <div className="login_page">
-      <h1>welcome to GChat</h1>
+      <h1>
+        welcome to{" "}
+        <span className="login_page-GC">
+          GC
+          <img src={GChat} alt="" className="login_page-GC-hat" />
+        </span>
+        hat
+      </h1>
       <Tabs
         value={value}
         onChange={handleChange}

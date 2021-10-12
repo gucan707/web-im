@@ -5,6 +5,20 @@
   flex-direction: column;
   align-items: center;
 
+  &-GC {
+    position: relative;
+
+    &-hat {
+      position: absolute;
+      width: 1.5rem;
+      height: 1.5rem;
+      top: -1rem;
+      right: 0;
+      left: 0;
+      margin: auto;
+    }
+  }
+
   .Mui-selected.Mui-selected {
     color: $myChatMessage;
   }
