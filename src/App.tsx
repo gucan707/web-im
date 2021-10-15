@@ -1,23 +1,37 @@
-import { useState } from "react";
-import "./App.scss";
+import './App.scss';
 
-import Input from "./components/Input";
-import AddImg from "./components/AddImg";
-import AvatarContainer from "./components/AvatarContainer";
-import ChatMessage from "./components/ChatMessage";
-import ContactItem from "./components/ContactItem";
-import Aside from "./components/Aside";
+import { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Chat from "./page/Chat";
+import loadable from '@loadable/component';
 
-import photo from "./assets/img/photo.jpeg";
+import Toasts from './components/Toasts';
+import { useAddToast } from './hooks/useAddToast';
+import { useAppDispatch } from './hooks/useAppDispatch';
+import { addToast } from './redux/toasts/toastsSlice';
+
+const ChatPage = loadable(() => import("./page/Chat"));
+const LoginPage = loadable(() => import("./page/Login"));
 
 function App() {
-  const [value, setValue] = useState("");
-
+  const { addToastFn } = useAddToast();
   return (
     <div className="App">
-      <Chat />
+      <Switch>
+        <Route path="/login" component={LoginPage}></Route>
+        <Route path="/" component={ChatPage}></Route>
+      </Switch>
+      <Toasts />
+      <button
+        onClick={() => {
+          addToastFn({
+            value: Math.random() > 0.7 ? "1 01 ".repeat(20) : "12312312",
+            severity: "error",
+          });
+        }}
+      >
+        click
+      </button>
     </div>
   );
 }
