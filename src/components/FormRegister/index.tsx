@@ -1,15 +1,14 @@
 import './index.scss';
 
-import { useMemo, useState } from 'react';
-import { useHistory } from 'react-router';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import sha256 from 'sha256';
 
-import { Button } from '@material-ui/core';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 import { useAddToast } from '../../hooks/useAddToast';
 import { createUser } from '../../network/http/user';
-import useDebounce from '../../utils/debounce';
+import { nicknameValidator, passwordValidator, usernameValidator } from '../../utils/validators';
 import Input from '../Input';
 
 const initialState = {
@@ -25,7 +24,7 @@ export default function FormRegister() {
   const { addToastFn } = useAddToast();
   const history = useHistory();
 
-  const checkAllowed = (form: {
+  const checkAllowed = async (form: {
     username: string;
     password: string;
     nickname: string;
@@ -33,17 +32,11 @@ export default function FormRegister() {
     const { nickname, password, username } = form;
 
     const newAllowed: boolean[] = [];
-    newAllowed[0] =
-      /^[_a-zA-Z0-9]+$/.test(username) &&
-      username.length >= 3 &&
-      username.length <= 10;
+    newAllowed[0] = !(await usernameValidator(username));
 
-    newAllowed[1] = nickname.length >= 3 && nickname.length <= 10;
+    newAllowed[1] = !(await nicknameValidator(nickname));
 
-    newAllowed[2] =
-      /^[_a-zA-Z0-9]+$/.test(password) &&
-      password.length >= 8 &&
-      password.length <= 15;
+    newAllowed[2] = !(await passwordValidator(password));
 
     setAllowed(newAllowed);
   };
