@@ -1,45 +1,12 @@
 import './index.scss';
 
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import sha256 from 'sha256';
-
 import LoadingButton from '@mui/lab/LoadingButton';
 
-import { useAddToast } from '../../hooks/useAddToast';
-import { createUser } from '../../network/http/user';
-import { nicknameValidator, passwordValidator, usernameValidator } from '../../utils/validators';
 import Input from '../Input';
-
-const initialState = {
-  username: "",
-  nickname: "",
-  password: "",
-};
+import useSetup from './hooks/useSetup';
 
 export default function FormRegister() {
-  const [form, setForm] = useState(initialState);
-  const [allowed, setAllowed] = useState([false, false, false]);
-  const [loading, setLoading] = useState(false);
-  const { addToastFn } = useAddToast();
-  const history = useHistory();
-
-  const checkAllowed = async (form: {
-    username: string;
-    password: string;
-    nickname: string;
-  }) => {
-    const { nickname, password, username } = form;
-
-    const newAllowed: boolean[] = [];
-    newAllowed[0] = !(await usernameValidator(username));
-
-    newAllowed[1] = !(await nicknameValidator(nickname));
-
-    newAllowed[2] = !(await passwordValidator(password));
-
-    setAllowed(newAllowed);
-  };
+  const { form, changeForm, allowed, loading, register } = useSetup();
 
   return (
     <div className="form_register">
@@ -51,13 +18,7 @@ export default function FormRegister() {
         <Input
           value={form.username}
           onChange={(e) => {
-            const newForm = {
-              username: e.target.value,
-              password: form.password,
-              nickname: form.nickname,
-            };
-            setForm(newForm);
-            checkAllowed(newForm);
+            changeForm({ e, key: "username" });
           }}
           multiline={false}
         />
@@ -70,13 +31,7 @@ export default function FormRegister() {
         <Input
           value={form.nickname}
           onChange={(e) => {
-            const newForm = {
-              nickname: e.target.value,
-              password: form.password,
-              username: form.username,
-            };
-            setForm(newForm);
-            checkAllowed(newForm);
+            changeForm({ e, key: "nickname" });
           }}
           multiline={false}
         />
@@ -89,13 +44,7 @@ export default function FormRegister() {
         <Input
           value={form.password}
           onChange={(e) => {
-            const newForm = {
-              password: e.target.value,
-              username: form.username,
-              nickname: form.nickname,
-            };
-            setForm(newForm);
-            checkAllowed(newForm);
+            changeForm({ e, key: "password" });
           }}
           multiline={false}
           type="password"
@@ -105,29 +54,7 @@ export default function FormRegister() {
         variant="outlined"
         className="form_register-btn"
         loading={loading}
-        onClick={async () => {
-          if (loading) return;
-          if (allowed.some((bool) => !bool)) {
-            addToastFn({
-              value: "信息填写有误",
-              severity: "error",
-            });
-            return;
-          }
-          setLoading(true);
-
-          const info = await createUser({
-            ...form,
-            password: sha256(form.password),
-          });
-          setLoading(false);
-          if (info) {
-            window.localStorage.setItem("GChat-token", info.token);
-            window.localStorage.setItem("GChat-id", info.id);
-            addToastFn({ value: "注册成功", severity: "success" });
-            history.push("/");
-          }
-        }}
+        onClick={register}
       >
         注册
       </LoadingButton>
