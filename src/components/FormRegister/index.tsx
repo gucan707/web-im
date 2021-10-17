@@ -1,9 +1,16 @@
-import { useState, useMemo } from "react";
-import { Button } from "@material-ui/core";
-import useDebounce from "../../utils/debounce";
-import Input from "../Input";
+import './index.scss';
 
-import "./index.scss";
+import { useMemo, useState } from 'react';
+import { useHistory } from 'react-router';
+import sha256 from 'sha256';
+
+import { Button } from '@material-ui/core';
+import LoadingButton from '@mui/lab/LoadingButton';
+
+import { useAddToast } from '../../hooks/useAddToast';
+import { createUser } from '../../network/http/user';
+import useDebounce from '../../utils/debounce';
+import Input from '../Input';
 
 const initialState = {
   username: "",
@@ -14,6 +21,9 @@ const initialState = {
 export default function FormRegister() {
   const [form, setForm] = useState(initialState);
   const [allowed, setAllowed] = useState([false, false, false]);
+  const [loading, setLoading] = useState(false);
+  const { addToastFn } = useAddToast();
+  const history = useHistory();
 
   const checkAllowed = (form: {
     username: string;
@@ -98,13 +108,36 @@ export default function FormRegister() {
           type="password"
         />
       </div>
-      <Button
+      <LoadingButton
         variant="outlined"
         className="form_register-btn"
-        onClick={() => console.log(form)}
+        loading={loading}
+        onClick={async () => {
+          if (loading) return;
+          if (allowed.some((bool) => !bool)) {
+            addToastFn({
+              value: "信息填写有误",
+              severity: "error",
+            });
+            return;
+          }
+          setLoading(true);
+
+          const info = await createUser({
+            ...form,
+            password: sha256(form.password),
+          });
+          setLoading(false);
+          if (info) {
+            window.localStorage.setItem("GChat-token", info.token);
+            window.localStorage.setItem("GChat-id", info.id);
+            addToastFn({ value: "注册成功", severity: "success" });
+            history.push("/");
+          }
+        }}
       >
         注册
-      </Button>
+      </LoadingButton>
     </div>
   );
 }
