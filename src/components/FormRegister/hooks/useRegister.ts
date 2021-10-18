@@ -2,13 +2,13 @@ import { useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import sha256 from 'sha256';
 
+import { Form, FormAllowed } from '../../../hooks/useForm';
 import { createUser } from '../../../network/http/user';
 import { addToast } from '../../../utils/addToast';
-import { FormRegister } from './useForm';
 
 type RegisterParams = {
-  allowed: boolean[];
-  form: FormRegister;
+  allowed: FormAllowed;
+  form: Form;
 };
 
 export default function useRegister(params: RegisterParams) {
@@ -18,7 +18,7 @@ export default function useRegister(params: RegisterParams) {
 
   const register = useCallback(async () => {
     if (loading) return;
-    if (allowed.some((isAllowed) => !isAllowed)) {
+    if (Object.values(allowed).some((isAllowed) => !isAllowed)) {
       addToast({
         value: "信息填写有误",
         severity: "error",

@@ -11,7 +11,7 @@ export default function FormRegister() {
   return (
     <div className="form_register">
       <div
-        className={"form_register-input" + (allowed[0] ? "" : " error")}
+        className={"form_register-input" + (allowed.username ? "" : " error")}
         data-warning="用户名需在3~10字之间，仅能包含数字、大小写字母与下划线（_）"
       >
         <div className="form_register-input-key">用户名</div>
@@ -24,7 +24,7 @@ export default function FormRegister() {
         />
       </div>
       <div
-        className={"form_register-input" + (allowed[1] ? "" : " error")}
+        className={"form_register-input" + (allowed.nickname ? "" : " error")}
         data-warning="昵称需在3~10字之间"
       >
         <div className="form_register-input-key">昵称</div>
@@ -37,7 +37,7 @@ export default function FormRegister() {
         />
       </div>
       <div
-        className={"form_register-input" + (allowed[2] ? "" : " error")}
+        className={"form_register-input" + (allowed.password ? "" : " error")}
         data-warning="密码需在8~15字之间，仅能包含数字、大小写字母与下划线（_）"
       >
         <div className="form_register-input-key">密码</div>
