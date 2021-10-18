@@ -28,11 +28,14 @@ export default function useForm(purpose: "register" | "login" | "changeInfo") {
   const [form, setForm] = useState(initialFormState);
   const [allowed, setAllowed] = useState(initialAllowedState);
 
-  const changeForm = useCallback(({ e, key }: changeFormParams) => {
-    const newForm = { ...form };
-    newForm[key] = e.target.value;
-    setForm(newForm);
-  }, []);
+  const changeForm = useCallback(
+    ({ e, key }: changeFormParams) => {
+      const newForm = { ...form };
+      newForm[key] = e.target.value;
+      setForm(newForm);
+    },
+    [form]
+  );
 
   const checkAllowed = useCallback(async () => {
     const { nickname, password, username } = form;
