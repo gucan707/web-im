@@ -1,7 +1,6 @@
 import './index.scss';
 
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import { Tab, Tabs } from '@material-ui/core';
 
@@ -12,13 +11,6 @@ import FormRegister from '../../components/FormRegister';
 export default function Login() {
   // 当前tab索引
   const [value, setValue] = useState(0);
-  const history = useHistory();
-
-  useEffect(() => {
-    const token = window.localStorage.getItem("GChat-token");
-    const id = window.localStorage.getItem("GChat-id");
-    if (token && id) history.push("/");
-  }, []);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
