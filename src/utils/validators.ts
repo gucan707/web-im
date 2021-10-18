@@ -25,7 +25,6 @@ export const nicknameValidator: Validator = async (nickname) => {
 
 export const passwordValidator: Validator = async (password) => {
   if (typeof password !== "string") return "密码不合法";
-  if (password.length !== 64) return "密码不合法";
 };
 
 export const groupNameValidator: Validator = async (groupName) => {
