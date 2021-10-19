@@ -17,7 +17,7 @@ export default function useSaveUserInfo() {
     if (location.pathname === "/login" && token && id) {
       history.push("/");
       return;
-    }
+    } else if (location.pathname === "/login") return;
     saveUserInfo(token, id);
   }, [location]);
 
