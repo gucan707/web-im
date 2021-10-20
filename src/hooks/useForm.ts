@@ -1,6 +1,7 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 
 import { nicknameValidator, passwordValidator, usernameValidator } from '../utils/validators';
+import { useAppSelector } from './useAppSelector';
 
 const initialFormState = {
   username: "",
@@ -24,9 +25,13 @@ export type changeFormParams = {
   key: "username" | "nickname" | "password";
 };
 
-export default function useForm(purpose: "register" | "login" | "changeInfo") {
+export default function useForm(
+  purpose: "register" | "login" | "changeInfo" | "changePw"
+) {
   const [form, setForm] = useState(initialFormState);
+  const [avatar, setAvatar] = useState("");
   const [allowed, setAllowed] = useState(initialAllowedState);
+  const userInfo = useAppSelector((state) => state.userInfoReducer.user);
 
   const changeForm = useCallback(
     ({ e, key }: changeFormParams) => {
@@ -42,10 +47,15 @@ export default function useForm(purpose: "register" | "login" | "changeInfo") {
     const newAllowed = { ...initialAllowedState };
 
     newAllowed.username =
-      purpose === "changeInfo" || !(await usernameValidator(username));
+      purpose === "changeInfo" ||
+      purpose === "changePw" ||
+      !(await usernameValidator(username));
     newAllowed.nickname =
-      purpose === "login" || !(await nicknameValidator(nickname));
-    newAllowed.password = !(await passwordValidator(password));
+      purpose === "login" ||
+      purpose === "changePw" ||
+      !(await nicknameValidator(nickname));
+    newAllowed.password =
+      purpose === "changeInfo" || !(await passwordValidator(password));
 
     setAllowed(newAllowed);
   }, [form, purpose]);
@@ -54,5 +64,10 @@ export default function useForm(purpose: "register" | "login" | "changeInfo") {
     checkAllowed();
   }, [form]);
 
-  return { form, changeForm, allowed };
+  useEffect(() => {
+    if (purpose !== "changeInfo") return;
+    setForm({ ...userInfo, password: "" });
+  }, [purpose, userInfo]);
+
+  return { form, changeForm, allowed, avatar, setAvatar };
 }

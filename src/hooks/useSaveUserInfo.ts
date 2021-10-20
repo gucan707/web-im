@@ -25,8 +25,8 @@ export default function useSaveUserInfo() {
     async (token: string | null, id: string | null) => {
       if (token && id) {
         const info = await getUserInfoById({ id });
-        console.log({ info });
         if (info) {
+          console.log({ info });
           dispatch(changeUserInfo({ ...info, id }));
         }
       } else history.push("/login");

@@ -18,6 +18,33 @@
 
     &-avatar {
       margin-bottom: 1rem;
+      position: relative;
+
+      &-popover {
+        position: absolute;
+        top: 2.5rem;
+        z-index: 9;
+        background-color: #fff;
+        font-size: 0.8rem;
+        border-radius: 4px;
+        box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+
+        &-item {
+          word-break: keep-all;
+          padding: 0.5rem 1rem;
+          cursor: pointer;
+          border-radius: 0 0 4px 4px;
+
+          &:nth-child(1) {
+            border-bottom: 1px solid $lightGray;
+            border-radius: 4px 4px 0 0;
+          }
+
+          &:hover {
+            background-color: $asideBgc;
+          }
+        }
+      }
     }
 
     &-btn {
@@ -41,6 +68,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
       margin-bottom: 0.5rem;
 
       &-input {
@@ -70,6 +98,32 @@
         width: 1.2rem;
         height: 1.2rem;
         cursor: pointer;
+      }
+
+      &-popover {
+        position: absolute;
+        top: 1.5rem;
+        right: 0;
+        z-index: 9;
+        font-size: 0.8rem;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+
+        &-item {
+          padding: 0.5rem 1rem;
+          cursor: pointer;
+          border-radius: 0 0 4px 4px;
+
+          &:nth-child(1) {
+            border-bottom: 1px solid $lightGray;
+            border-radius: 4px 4px 0 0;
+          }
+
+          &:hover {
+            background-color: $asideBgc;
+          }
+        }
       }
     }
   }
@@ -134,5 +188,13 @@
         }
       }
     }
+  }
+
+  &-dialog-tabs {
+    margin: -10px 0 10px;
+  }
+
+  .MuiTabs-flexContainer {
+    justify-content: space-evenly;
   }
 }

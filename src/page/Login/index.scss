@@ -19,12 +19,8 @@
     }
   }
 
-  .Mui-selected.Mui-selected {
-    color: $myChatMessage;
-  }
-
-  .MuiTabs-indicator {
-    background-color: $myChatMessage;
+  .MuiButton-outlinedPrimary {
+    margin: 0;
   }
 
   .login_page-tab {

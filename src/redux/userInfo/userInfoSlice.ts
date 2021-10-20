@@ -3,11 +3,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ResUserBaseInfo } from '../../network/http/userType';
 
 // 定义 state 对应类型的初始值
-const initialState: ResUserBaseInfo = {
-  id: "",
-  avatar: "",
-  nickname: "",
-  username: "",
+const initialState = {
+  user: {
+    id: "",
+    avatar: "",
+    nickname: "",
+    username: "",
+  },
 };
 
 export const userInfoSlice = createSlice({
@@ -21,7 +23,9 @@ export const userInfoSlice = createSlice({
       // 用 ConstructorParameters 获取 ToastType 类的第一个参数类型传给 PayloadAction
       action: PayloadAction<ResUserBaseInfo>
     ) => {
-      state = { ...action.payload };
+      console.log("action", { ...action.payload });
+
+      state.user = { ...action.payload };
     },
   },
 });

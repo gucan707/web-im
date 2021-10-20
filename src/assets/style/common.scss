@@ -37,3 +37,17 @@ pre {
   border-radius: 10px;
   background: $commonGray;
 }
+
+.MuiButton-outlinedPrimary.MuiButton-outlinedPrimary {
+  color: $myChatMessage;
+  border: 1px solid $myChatMessage;
+  margin: 1rem 1rem 0;
+}
+
+.Mui-selected.Mui-selected.Mui-selected {
+  color: $myChatMessage;
+}
+
+.MuiTabs-indicator.MuiTabs-indicator {
+  background-color: $myChatMessage;
+}

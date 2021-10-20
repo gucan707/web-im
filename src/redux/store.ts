@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import toastsReducer from './toasts/toastsSlice';
+import userInfoReducer from './userInfo/userInfoSlice';
 
 export const store = configureStore({
   reducer: {
     toastsReducer,
+    userInfoReducer,
   },
 });
 

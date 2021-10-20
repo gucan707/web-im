@@ -25,6 +25,8 @@ export const nicknameValidator: Validator = async (nickname) => {
 
 export const passwordValidator: Validator = async (password) => {
   if (typeof password !== "string") return "密码不合法";
+  if (password.length < 8 || password.length > 15) return "密码需在8~15字之间";
+  if (!/^[_a-zA-Z0-9]+$/.test(password)) return "密码包含非法字符";
 };
 
 export const groupNameValidator: Validator = async (groupName) => {

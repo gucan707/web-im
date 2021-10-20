@@ -1,0 +1,33 @@
+@import "../../../../assets/style/color.scss";
+
+.change_password {
+  text-align: center;
+
+  &-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem 0 1rem 0;
+    transform: translateX(-1rem);
+
+    &-key {
+      padding: 0 0.3rem;
+      width: 5rem;
+      text-align: right;
+    }
+
+    .input {
+      height: 2.5rem;
+
+      .MuiOutlinedInput-input {
+        padding: 0.1rem 0.5rem;
+      }
+    }
+  }
+
+  .MuiButton-outlinedPrimary {
+    color: $myChatMessage;
+    border: 1px solid $myChatMessage;
+    margin: 1rem 1rem 0;
+  }
+}
