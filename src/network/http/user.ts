@@ -1,6 +1,7 @@
 import _request from './_request';
 import {
-    ReqBaseInfo, ReqCreateUser, ReqId, ReqLoginInfo, ResFriendsList, ResToken, ResUserBaseInfo
+    ReqBaseInfo, ReqCreateUser, ReqId, ReqLoginInfo, ReqPwInfo, ResFriendsList, ResToken,
+    ResUserBaseInfo
 } from './userType';
 
 const GET = "GET";
@@ -33,6 +34,13 @@ export const updateUserInfo = async (baseInfo: ReqBaseInfo) =>
     method: PUT,
     url: "/user",
     data: baseInfo,
+  });
+
+export const updatePw = async (pwInfo: ReqPwInfo) =>
+  await _request({
+    method: PUT,
+    url: "/user/password",
+    data: pwInfo,
   });
 
 export const getFriendsList = async () =>

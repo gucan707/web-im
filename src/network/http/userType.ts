@@ -15,8 +15,12 @@ export type ReqId = {
 
 export type ReqBaseInfo = {
   nickname: string;
-  password: string;
   avatar: string;
+};
+
+export type ReqPwInfo = {
+  password: string;
+  newPassword: string;
 };
 
 export type ResToken = {
