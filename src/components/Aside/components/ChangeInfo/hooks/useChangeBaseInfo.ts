@@ -39,9 +39,11 @@ export default function useChangeInfo({
         value: "修改成功",
         severity: "success",
       });
+      setLoading(false);
       hideDialog();
+    } else {
+      setLoading(false);
     }
-    setLoading(false);
   }, [loading, allowed]);
 
   return { saveBaseInfo, loading };
