@@ -1,6 +1,8 @@
-import React from "react";
-import { TextField } from "@material-ui/core";
-import "./index.scss";
+import './index.scss';
+
+import React from 'react';
+
+import { TextField } from '@material-ui/core';
 
 export interface InputProps {
   value: string;
@@ -11,6 +13,7 @@ export interface InputProps {
   end?: JSX.Element;
   multiline?: boolean;
   type?: string;
+  autoComplete?: string;
 }
 
 export default function Input(props: InputProps) {
@@ -21,6 +24,7 @@ export default function Input(props: InputProps) {
     end,
     multiline = true,
     type = "text",
+    autoComplete = "on",
   } = props;
   return (
     <div className="input">
@@ -32,6 +36,7 @@ export default function Input(props: InputProps) {
         maxRows={4}
         value={value}
         onChange={onChange}
+        autoComplete={autoComplete}
       />
       <div className="input-end">{end ? end : false}</div>
     </div>

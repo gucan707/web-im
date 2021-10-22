@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+import sha256 from 'sha256';
 
 import { Form, FormAllowed } from '../../../../../hooks/useForm';
 import { updatePw, updateUserInfo } from '../../../../../network/http/user';
@@ -9,6 +10,7 @@ type ChangeInfoParams = {
   form: Form;
   oldPw: string;
   confirmPw: string;
+  hideDialog: Function;
 };
 
 export default function useSavePw({
@@ -16,6 +18,7 @@ export default function useSavePw({
   form,
   oldPw,
   confirmPw,
+  hideDialog,
 }: ChangeInfoParams) {
   const [loading, setLoading] = useState(false);
 
@@ -36,14 +39,21 @@ export default function useSavePw({
       return;
     }
     setLoading(true);
-    const res = await updatePw({ newPassword: confirmPw, password: oldPw });
-    if (res)
+    const res = await updatePw({
+      newPassword: sha256(confirmPw),
+      password: sha256(oldPw),
+    });
+    if (res) {
       addToast({
         value: "修改成功",
         severity: "success",
       });
-    setLoading(false);
-  }, [loading, allowed]);
+      setLoading(false);
+      hideDialog();
+    } else {
+      setLoading(false);
+    }
+  }, [loading, allowed, confirmPw, oldPw, form]);
 
   return { savePw, loading };
 }

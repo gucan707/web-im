@@ -21,25 +21,44 @@ export default function ChangePassword({
     oldPw,
     loading,
     savePw,
-  } = useSetup();
+  } = useSetup({ hideDialog });
 
   return (
     <div className="change_password">
+      {/* 避免浏览器自动填充用户名到其他搜索框中 */}
+      <input
+        type="text"
+        style={{ position: "absolute", clipPath: "polygon(0 0, 0 0, 0 0)" }}
+      />
+      <div className="change_password-input">
+        <div className="change_password-input-key">旧密码</div>
+        <Input
+          value={oldPw}
+          onChange={changeOldPw}
+          multiline={false}
+          type="password"
+          autoComplete="off"
+        />
+      </div>
       <div className="change_password-input">
         <div className="change_password-input-key">新密码</div>
         <Input
           value={form.password}
           onChange={(e) => changeForm({ e, key: "password" })}
           multiline={false}
+          type="password"
+          autoComplete="off"
         />
       </div>
       <div className="change_password-input">
         <div className="change_password-input-key">确认新密码</div>
-        <Input value={confirmPw} onChange={changeConfirmPw} multiline={false} />
-      </div>
-      <div className="change_password-input">
-        <div className="change_password-input-key">旧密码</div>
-        <Input value={oldPw} onChange={changeOldPw} multiline={false} />
+        <Input
+          value={confirmPw}
+          onChange={changeConfirmPw}
+          multiline={false}
+          type="password"
+          autoComplete="off"
+        />
       </div>
       <LoadingButton
         variant="outlined"
