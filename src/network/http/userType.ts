@@ -10,7 +10,7 @@ export type ReqLoginInfo = {
 };
 
 export type ReqId = {
-  id: string;
+  _id: string;
 };
 
 export type ReqBaseInfo = {
@@ -24,12 +24,12 @@ export type ReqPwInfo = {
 };
 
 export type ResToken = {
-  id: string;
+  _id: string;
   token: string;
 };
 
 export type ResUserBaseInfo = {
-  id: string;
+  _id: string;
   username: string;
   nickname: string;
   avatar: string;

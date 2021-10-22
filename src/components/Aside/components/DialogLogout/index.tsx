@@ -18,7 +18,7 @@ export default function DialogLogout({ hideDialog }: { hideDialog: Function }) {
           variant="outlined"
           onClick={() => {
             window.localStorage.removeItem("GChat-token");
-            window.localStorage.removeItem("GChat-id");
+            window.localStorage.removeItem("GChat-_id");
             history.push("/login");
           }}
         >

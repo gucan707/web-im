@@ -15,7 +15,7 @@ export default function Toasts() {
         <Alert
           variant="outlined"
           severity={toast.severity}
-          key={toast.id}
+          key={toast._id}
           className="toasts-toast"
         >
           {toast.value}

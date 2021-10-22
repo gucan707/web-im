@@ -2,7 +2,7 @@ import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit';
 
 interface ToastType {
   value: string;
-  id: string;
+  _id: string;
   severity: "error" | "warning" | "info" | "success";
 }
 
@@ -37,7 +37,7 @@ export const toastsSlice = createSlice({
 
     removeToast: (state, action: PayloadAction<string>) => {
       const toastToRemove = [...state.toasts].findIndex(
-        (toast) => toast.id === action.payload
+        (toast) => toast._id === action.payload
       );
 
       state.toasts.splice(toastToRemove, 1);

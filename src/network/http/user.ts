@@ -26,7 +26,7 @@ export const login = async (loginInfo: ReqLoginInfo) =>
 export const getUserInfoById = async (idObj: ReqId) =>
   await _request<ResUserBaseInfo>({
     method: GET,
-    url: `/user/${idObj.id}`,
+    url: `/user/${idObj._id}`,
   });
 
 export const updateUserInfo = async (baseInfo: ReqBaseInfo) =>

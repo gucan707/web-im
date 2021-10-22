@@ -13,21 +13,21 @@ export default function useSaveUserInfo() {
 
   useEffect(() => {
     const token = window.localStorage.getItem("GChat-token");
-    const id = window.localStorage.getItem("GChat-id");
-    if (location.pathname === "/login" && token && id) {
+    const _id = window.localStorage.getItem("GChat-_id");
+    if (location.pathname === "/login" && token && _id) {
       history.push("/");
       return;
     } else if (location.pathname === "/login") return;
-    saveUserInfo(token, id);
+    saveUserInfo(token, _id);
   }, [location]);
 
   const saveUserInfo = useCallback(
-    async (token: string | null, id: string | null) => {
-      if (token && id) {
-        const info = await getUserInfoById({ id });
+    async (token: string | null, _id: string | null) => {
+      if (token && _id) {
+        const info = await getUserInfoById({ _id });
         if (info) {
           console.log({ info });
-          dispatch(changeUserInfo({ ...info, id }));
+          dispatch(changeUserInfo({ ...info, _id }));
         }
       } else history.push("/login");
     },

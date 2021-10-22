@@ -45,11 +45,13 @@ export default function _request<T = {}>(config: AxiosRequestConfig) {
       console.error(err);
 
       if (err instanceof Error) {
-        const id = nanoid();
-        store.dispatch(addToast({ value: err.message, severity: "error", id }));
+        const _id = nanoid();
+        store.dispatch(
+          addToast({ value: err.message, severity: "error", _id })
+        );
 
         setTimeout(() => {
-          store.dispatch(removeToast(id));
+          store.dispatch(removeToast(_id));
         }, 1800);
       }
 

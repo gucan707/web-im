@@ -5,7 +5,7 @@ import { ResUserBaseInfo } from '../../network/http/userType';
 // 定义 state 对应类型的初始值
 const initialState = {
   user: {
-    id: "",
+    _id: "",
     avatar: "",
     nickname: "",
     username: "",

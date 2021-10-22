@@ -34,7 +34,7 @@ export default function useRegister(params: RegisterParams) {
     setLoading(false);
     if (info) {
       window.localStorage.setItem("GChat-token", info.token);
-      window.localStorage.setItem("GChat-id", info.id);
+      window.localStorage.setItem("GChat-_id", info._id);
       addToast({ value: "注册成功", severity: "success" });
       history.push("/");
     }
