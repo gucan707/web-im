@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { Badge, Avatar } from "@material-ui/core";
+import './index.scss';
 
-import "./index.scss";
+import { MouseEventHandler, useState } from 'react';
+
+import { Avatar, Badge } from '@material-ui/core';
 
 export interface AvatarContainerProps {
   imgSrc: string; // 照片路径
@@ -24,6 +25,7 @@ export interface AvatarContainerProps {
     width: number;
     height: number;
   };
+  onAvatarClick?: MouseEventHandler<HTMLDivElement>;
 }
 
 export default function AvatarContainer(props: AvatarContainerProps) {
@@ -36,6 +38,7 @@ export default function AvatarContainer(props: AvatarContainerProps) {
       horizontal: "right",
     },
     avartarSx = { width: 33, height: 33 },
+    onAvatarClick,
   } = props;
   return (
     <Badge
@@ -44,7 +47,13 @@ export default function AvatarContainer(props: AvatarContainerProps) {
       anchorOrigin={anchorOrigin}
       invisible={badgeInvisible}
     >
-      <Avatar alt="err" src={imgSrc} sx={avartarSx} />
+      <Avatar
+        alt="err"
+        src={imgSrc}
+        sx={avartarSx}
+        className="avatar"
+        onClick={onAvatarClick}
+      />
     </Badge>
   );
 }
