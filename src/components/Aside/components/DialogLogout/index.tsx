@@ -1,3 +1,5 @@
+import './index.scss';
+
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 
@@ -9,7 +11,7 @@ export default function DialogLogout({ hideDialog }: { hideDialog: Function }) {
   const history = useHistory();
 
   return (
-    <Dialog>
+    <Dialog className="logout-small">
       <>
         <div>确认退出？</div>
         <LoadingButton
