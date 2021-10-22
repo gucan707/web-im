@@ -34,7 +34,7 @@ export default function useChangeInfo({
     setLoading(true);
     const res = await updateUserInfo({ ...form, avatar });
     if (res) {
-      // await dispatch(changeUserInfo({ ...form, avatar }))
+      dispatch(changeUserInfo({ ...form, avatar }));
       addToast({
         value: "修改成功",
         severity: "success",

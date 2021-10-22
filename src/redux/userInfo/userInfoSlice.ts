@@ -21,11 +21,14 @@ export const userInfoSlice = createSlice({
     changeUserInfo: (
       state,
       // 用 ConstructorParameters 获取 ToastType 类的第一个参数类型传给 PayloadAction
-      action: PayloadAction<ResUserBaseInfo>
+      action: PayloadAction<Partial<ResUserBaseInfo>>
     ) => {
       console.log("action", { ...action.payload });
 
-      state.user = { ...action.payload };
+      state.user = {
+        ...state.user,
+        ...action.payload,
+      };
     },
   },
 });
