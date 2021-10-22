@@ -7,6 +7,14 @@
   border: 2px solid $commonGray;
   padding: 0 0.5rem;
 
+  &-front {
+    padding-left: 0.2rem;
+  }
+
+  &-end {
+    padding-right: 0.2rem;
+  }
+
   &-content {
     flex: 1;
     border: none;

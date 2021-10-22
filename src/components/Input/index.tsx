@@ -28,7 +28,7 @@ export default function Input(props: InputProps) {
   } = props;
   return (
     <div className="input">
-      <div className="input-front">{front ? front : false}</div>
+      {front && <div className="input-front">{front}</div>}
       <TextField
         className="input-content"
         multiline={multiline}
@@ -38,7 +38,7 @@ export default function Input(props: InputProps) {
         onChange={onChange}
         autoComplete={autoComplete}
       />
-      <div className="input-end">{end ? end : false}</div>
+      {end && <div className="input-end">{end}</div>}
     </div>
   );
 }
