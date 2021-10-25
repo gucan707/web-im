@@ -1,0 +1,60 @@
+@import "../../../../assets/style/color.scss";
+
+.add_friendNgroup {
+  .search {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+  }
+
+  .input {
+    border: 2px solid $myChatMessage;
+    border-radius: 999px;
+    width: 80%;
+    margin: auto;
+
+    .MuiOutlinedInput-input {
+      padding: 10px;
+    }
+  }
+
+  &-lists {
+    width: 80%;
+    max-height: 50vh;
+    margin: 0.5rem auto 0;
+    overflow: scroll;
+    padding: 0 1rem;
+
+    &-item {
+      display: flex;
+      align-items: center;
+      font-size: 0.9rem;
+      padding: 0.5rem 0;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $lightGray;
+      }
+
+      &-nickname {
+        padding: 0 0.5rem;
+      }
+
+      &-username {
+        color: $commonGray;
+
+        &::before {
+          content: "@";
+        }
+      }
+
+      &-add {
+        width: 1.2rem;
+        cursor: pointer;
+      }
+
+      .spacer {
+        flex: 1;
+      }
+    }
+  }
+}

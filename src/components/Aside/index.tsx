@@ -9,6 +9,7 @@ import photo from '../../assets/img/photo.jpeg';
 import searchIcon from '../../assets/img/search.png';
 import AvatarContainer from '../AvatarContainer';
 import ContactItem from '../ContactItem';
+import DialogAddRelation from './components/DialogAddRelation';
 import DialogLogout from './components/DialogLogout';
 import DialogUpdateInfo from './components/DialogUpdateInfo';
 import useSetup from './hooks/useSetup';
@@ -78,20 +79,26 @@ export default function Aside() {
             className="aside-content-opts-add"
             onClick={() => setPopover(PopoverType.add)}
           />
-          {/* {popover === PopoverType.add && ( */}
-          <>
-            <div
-              className="popover-mask"
-              onClick={() => setPopover(PopoverType.none)}
-            ></div>
-            <div className={"aside-content-opts-popover"}>
-              <div className="aside-content-opts-popover-item">
-                添加好友/群组
+          {popover === PopoverType.add && (
+            <>
+              <div
+                className="popover-mask"
+                onClick={() => setPopover(PopoverType.none)}
+              ></div>
+              <div className="aside-content-opts-popover">
+                <div
+                  className="aside-content-opts-popover-item"
+                  onClick={() => {
+                    setDialog(Dialog.addRelation);
+                    setPopover(PopoverType.none);
+                  }}
+                >
+                  添加好友/群组
+                </div>
+                <div className="aside-content-opts-popover-item">创建群组</div>
               </div>
-              <div className="aside-content-opts-popover-item">创建群组</div>
-            </div>
-          </>
-          {/* )} */}
+            </>
+          )}
         </div>
         <div>
           <ContactItem />
@@ -103,6 +110,9 @@ export default function Aside() {
         <DialogUpdateInfo hideDialog={hideDialog} />
       )}
       {dialog === Dialog.logout && <DialogLogout hideDialog={hideDialog} />}
+      {dialog === Dialog.addRelation && (
+        <DialogAddRelation hideDialog={hideDialog} />
+      )}
     </aside>
   );
 }

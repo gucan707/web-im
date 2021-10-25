@@ -1,7 +1,7 @@
 import _request from './_request';
 import {
-    ReqBaseInfo, ReqCreateUser, ReqId, ReqLoginInfo, ReqPwInfo, ResFriendsList, ResToken,
-    ResUserBaseInfo
+    ReqBaseInfo, ReqCreateUser, ReqId, ReqLoginInfo, ReqPwInfo, ReqSearchUser, ResFriendsList,
+    ResSearchUser, ResToken, ResUserBaseInfo
 } from './userType';
 
 const GET = "GET";
@@ -47,4 +47,11 @@ export const getFriendsList = async () =>
   await _request<ResFriendsList>({
     method: GET,
     url: "/user/friend",
+  });
+
+export const searchUser = async (search: ReqSearchUser) =>
+  await _request<ResSearchUser>({
+    method: GET,
+    url: "/user/search",
+    params: search,
   });
