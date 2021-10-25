@@ -55,3 +55,16 @@ export const searchUser = async (search: ReqSearchUser) =>
     url: "/user/search",
     params: search,
   });
+
+export const addFriend = async (idObj: ReqId) =>
+  await _request<string | undefined>({
+    method: POST,
+    url: "/user/friend",
+    data: idObj,
+  });
+
+export const delFriend = async (idObj: ReqId) =>
+  await _request({
+    method: DELETE,
+    url: `/user/friend/${idObj._id}`,
+  });

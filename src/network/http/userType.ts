@@ -40,11 +40,6 @@ export type ResUserBaseInfo = {
   avatar: string;
 };
 
-export type ResSearchUser = {
-  _id: string;
-  nickname: string;
-  username: string;
-  avatar: string;
-}[];
+export type ResSearchUser = ResUserBaseInfo[];
 
 export type ResFriendsList = ResUserBaseInfo[];

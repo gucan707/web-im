@@ -17,8 +17,18 @@ import { Dialog } from './hooks/useShowDialog';
 import { PopoverType } from './hooks/useShowPopover';
 
 export default function Aside() {
-  const { userInfo, dialog, setDialog, hideDialog, popover, setPopover } =
-    useSetup();
+  const {
+    userInfo,
+    dialog,
+    setDialog,
+    hideDialog,
+    popover,
+    setPopover,
+    friends,
+    onAddFriend,
+    onDelFriend,
+    onGetFriendsList,
+  } = useSetup();
 
   return (
     <aside className="aside">
@@ -111,7 +121,11 @@ export default function Aside() {
       )}
       {dialog === Dialog.logout && <DialogLogout hideDialog={hideDialog} />}
       {dialog === Dialog.addRelation && (
-        <DialogAddRelation hideDialog={hideDialog} />
+        <DialogAddRelation
+          hideDialog={hideDialog}
+          onAddFriend={onAddFriend}
+          friends={friends}
+        />
       )}
     </aside>
   );

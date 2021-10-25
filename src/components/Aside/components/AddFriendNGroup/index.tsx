@@ -8,13 +8,16 @@ import photo from '../../../../assets/img/photo.jpeg';
 import searchIcon from '../../../../assets/img/search.png';
 import AvatarContainer from '../../../AvatarContainer';
 import Input from '../../../Input';
+import { DialogAddRelationProps } from '../DialogAddRelation';
 import useSetup from './hooks/useSetup';
 
 export default function AddFriendNGroup({
   hideDialog,
-}: {
-  hideDialog: Function;
-}) {
+  onAddFriend,
+  friends,
+}: Pick<DialogAddRelationProps, "hideDialog" | "onAddFriend" | "friends">) {
+  console.log({ friends });
+
   const { changeSearchValue, search, searchValue, searchUsers } = useSetup();
 
   const SearchIcon = (
@@ -41,11 +44,20 @@ export default function AddFriendNGroup({
                 {user.username}
               </div>
               <div className="spacer"></div>
-              <img
-                src={i ? checkedIcon : addCrossIcon}
-                alt="add"
-                className="add_friendNgroup-lists-item-add"
-              />
+              {friends.some((friend) => friend._id === user._id) ? (
+                <img
+                  src={checkedIcon}
+                  alt="added"
+                  className="add_friendNgroup-lists-item-added"
+                />
+              ) : (
+                <img
+                  src={addCrossIcon}
+                  alt="add"
+                  className="add_friendNgroup-lists-item-add"
+                  onClick={() => onAddFriend({ _id: user._id })}
+                />
+              )}
             </div>
           ))
         ) : (
