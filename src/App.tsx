@@ -7,12 +7,16 @@ import loadable from '@loadable/component';
 
 import Toasts from './components/Toasts';
 import useSaveUserInfo from './hooks/useSaveUserInfo';
+import { setupSocket } from './network/socket';
 
 const ChatPage = loadable(() => import("./page/Chat"));
 const LoginPage = loadable(() => import("./page/Login"));
 
 function App() {
   useSaveUserInfo();
+  useEffect(() => {
+    setupSocket();
+  }, []);
   return (
     <div className="App">
       <Switch>

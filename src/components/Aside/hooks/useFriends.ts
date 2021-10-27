@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { addFriend, delFriend, getFriendsList } from '../../../network/http/user';
 import { ReqId, ResFriendsList } from '../../../network/http/userType';
@@ -11,6 +11,10 @@ export default function useFriends() {
     const friends = await getFriendsList();
     setFriends(friends || []);
   };
+
+  useEffect(() => {
+    onGetFriendsList();
+  }, []);
 
   const onAddFriend = async ({ _id }: ReqId) => {
     const applyMsg = await addFriend({ _id });

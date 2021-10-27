@@ -1,12 +1,14 @@
-import { io } from "socket.io-client";
+import { io } from 'socket.io-client';
 
-import { SOCKET_SERVER } from "../../constant/socket";
-import { WsMessage } from "../../models/socket";
+import { SOCKET_SERVER } from '../../constant/socket';
+import { WsMessage } from '../../models/socket';
 
-// export const socket = io(SOCKET_SERVER);
+export const socket = io(SOCKET_SERVER);
 
-// socket.on("connection", () => {
-//   console.log("#ws connected");
-// });
+export const setupSocket = () => {
+  socket.on("connection", () => {
+    console.log("#ws connected");
+  });
 
-// socket.on(WsMessage.receiveMessage, console.log);
+  socket.on(WsMessage.receiveMessage, console.log);
+};
