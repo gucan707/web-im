@@ -111,7 +111,7 @@ export default function Aside() {
           )}
         </div>
         <div>
-          <ContactItem />
+          <ContactItem type="applyForFriend" />
           <ContactItem />
           <ContactItem />
         </div>

@@ -6,7 +6,7 @@
   justify-content: space-around;
   min-height: 5rem;
   width: 80%;
-  margin: 0 auto;
+  margin: 1rem auto;
   padding: 0.5rem 0;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
@@ -36,6 +36,24 @@
 
     .MuiButton-outlinedPrimary {
       margin: 1rem 0.5rem 0;
+    }
+
+    &-result {
+      width: 5rem;
+      margin: 0 0.5rem 0 auto;
+      text-align: center;
+      padding: 0.2rem;
+      transform: rotate(13deg);
+
+      &.resolve {
+        color: $success;
+        border: 1px solid $success;
+      }
+
+      &.reject {
+        color: $fail;
+        border: 1px solid $fail;
+      }
     }
   }
 }

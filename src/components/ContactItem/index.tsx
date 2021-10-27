@@ -1,17 +1,32 @@
-import { useState } from "react";
-import ListOutlinedIcon from "@material-ui/icons/ListOutlined";
+import './index.scss';
 
-import AvatarContainer from "../AvatarContainer";
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import photo from "../../assets/img/photo.jpeg";
+import ListOutlinedIcon from '@material-ui/icons/ListOutlined';
 
-import "./index.scss";
+import noticeIcon from '../../assets/img/notice.png';
+import photo from '../../assets/img/photo.jpeg';
+import AvatarContainer from '../AvatarContainer';
 
-export default function ContactItem() {
+type ContactItemProps = {
+  type?: "chat" | "applyForFriend" | "applyForGroup";
+};
+
+export default function ContactItem(props: ContactItemProps) {
+  const { type = "chat" } = props;
+  const history = useHistory();
+
   return (
-    <div className="contact_item">
+    <div
+      className="contact_item"
+      onClick={() => {
+        if (type === "chat") return;
+        history.push(`/${type}`);
+      }}
+    >
       <AvatarContainer
-        imgSrc={photo}
+        imgSrc={type === "chat" ? photo : noticeIcon}
         badgeInvisible={false}
         avartarSx={{ width: 29, height: 29 }}
       />

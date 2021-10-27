@@ -17,6 +17,7 @@ function App() {
     <div className="App">
       <Switch>
         <Route path="/login" component={LoginPage}></Route>
+        <Route path="/:chatroom" component={ChatPage}></Route>
         <Route path="/" component={ChatPage}></Route>
       </Switch>
       <Toasts />
