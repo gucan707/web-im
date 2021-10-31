@@ -6,7 +6,10 @@ export const formatDate = (date: Date): string => {
       date.getDate() === now.getDate()
     ) {
       return date.toLocaleTimeString();
-    } else return date.toLocaleDateString() + " " + date.toLocaleTimeString;
+    } else
+      return (
+        date.toLocaleDateString().slice(5) + " " + date.toLocaleTimeString()
+      );
   }
   return date.toLocaleString();
 };

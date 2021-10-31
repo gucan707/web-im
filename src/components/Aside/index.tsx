@@ -5,8 +5,10 @@ import friendsIcon from '../../assets/img/friends.png';
 import logoutIcon from '../../assets/img/logout.png';
 import messageIcon from '../../assets/img/message.png';
 import momentsIcon from '../../assets/img/moments.png';
+import notice from '../../assets/img/notice.png';
 import photo from '../../assets/img/photo.jpeg';
 import searchIcon from '../../assets/img/search.png';
+import { socketJoinRoom } from '../../network/socket';
 import AvatarContainer from '../AvatarContainer';
 import ContactItem from '../ContactItem';
 import DialogAddRelation from './components/DialogAddRelation';
@@ -28,6 +30,8 @@ export default function Aside() {
     onAddFriend,
     onDelFriend,
     onGetFriendsList,
+    chatRoom,
+    selectChatRoom,
   } = useSetup();
 
   return (
@@ -111,9 +115,16 @@ export default function Aside() {
           )}
         </div>
         <div>
-          <ContactItem type="applyForFriend" />
-          <ContactItem />
-          <ContactItem />
+          <ContactItem type="applyForFriend" unread={2} />
+          {chatRoom.map((room) => (
+            <ContactItem
+              unread={5}
+              key={room._id}
+              isSelected={room._id === selectChatRoom}
+              type="chat"
+              roomInfo={room}
+            />
+          ))}
         </div>
       </div>
       {dialog === Dialog.updateInfo && (

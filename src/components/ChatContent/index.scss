@@ -14,4 +14,19 @@
   &-input {
     padding: 0.3rem;
   }
+
+  &-default {
+    flex: 1;
+    padding-left: 2rem;
+
+    &-background {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70%;
+      max-width: 20rem;
+      opacity: 0.2;
+    }
+  }
 }

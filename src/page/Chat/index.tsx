@@ -8,7 +8,7 @@ import Aside from '../../components/Aside';
 import ChatContent from '../../components/ChatContent';
 
 export default function Chat() {
-  let { pathname } = useLocation();
+  const { pathname } = useLocation();
 
   return (
     <div className="chat_page">
@@ -16,7 +16,7 @@ export default function Chat() {
       {pathname === "/applyForFriend" || pathname === "/applyForGroup" ? (
         <Application pathname={pathname} />
       ) : (
-        <ChatContent />
+        <ChatContent roomId={pathname.slice(1)} />
       )}
     </div>
   );

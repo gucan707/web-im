@@ -6,7 +6,8 @@
   padding: 0.3rem 0.2rem;
   vertical-align: middle;
 
-  &:hover {
+  &:hover,
+  &.selected {
     background-color: $contactItemHover;
     cursor: pointer;
 
